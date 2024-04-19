@@ -1,0 +1,73 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>EmpleosApp | Creación de Ofertas de Trabajo</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <header th:insert="~{fragments/menu :: menu-principal}"></header>
+
+    <main role="main">     
+      <hr>
+      <div class="container"> 
+
+        <div class="card">
+          <h4 class="card-header"><strong>Datos de la Entrevista</strong></h4>              
+          <div class="card-body">
+          <h5 class="card-title"><strong>Postulante: </strong><span th:text="${solicitud.usuario.nombre}"></span></h5>
+          <h6 class="card-title"><strong>Vacante: </strong><span th:text="${solicitud.vacante.nombre}"></span></h6>
+            <form th:action="@{/agenda/save}" th:object="${agenda}" method="post" enctype="multipart/form-data">
+            <input type="hidden" th:field="*{solicitud}" th:value="${agenda.solicitud}" />
+              <div class="row">
+                <div class="col-md-3"> 
+	                  <div class="form-group">
+	                    <label for="fechaCreacion">Fecha de Entrevista</label>
+	                    <input type="text" class="form-control" name="fecha" th:field="*{fecha}" id="fecha" placeholder="Fecha de entrevista" required="required">
+	                  </div>  
+	            </div>
+             </div> 
+              <button type="submit" class="btn btn-primary">Agendar</button>  
+            </form>
+          </div>
+        </div>
+      </div> <!-- /container -->
+    </main>
+
+    <footer th:insert="~{fragments/footer :: pie-pagina}" class="footer"></footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script> 
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script th:src="@{/tinymce/tinymce.min.js}"></script>
+    <script>
+      $(function () {
+          $("#fecha").datepicker({dateFormat: 'dd-mm-yy'});
+        }
+      );
+      
+      tinymce.init({
+          selector: '#detalles',
+          plugins: "textcolor, table lists code",
+          toolbar: " undo redo | bold italic | alignleft aligncenter alignright alignjustify \n\
+                    | bullist numlist outdent indent | forecolor backcolor table code"
+      });
+      
+    </script>
+  </body>
+</html>

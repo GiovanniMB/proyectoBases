@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmpleosApp | Acerca de Empleos App</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link rel="stylesheet" href="/css/stylesT.css">
+</head>
+<body class="bodyS">
+    <header th:insert="~{fragments/menu :: menu-principal}"></header>
+    <main class="home">
+        <div class="containerT">
+            <div class="home-info">
+                <div class="left">
+                    <div class="leftS">
+                        <h1>Hola, soy</h1>
+                        <h1><span>David</span> Millan</h1>
+                        <h4>
+                            y soy un <span class="multiple"></span>
+                        </h4>
+                        <p>
+                            Hola, yo soy David Giovanni Millan Bautista, me gusta mucho lo relacionado con front-end y también me gusta lo relacionado con bases de datos y back-end.
+                            Me gusta hacer diseños relacionados con experiencias interactivas web utilizando HTML, CSS y JavaScript.
+                            También Java Spring Boot, C, C++, C#, MySQL y algo de Python.
+                        </p>
+                    </div>
+                    <div >
+                        <button class="skill">Skills</button>
+                    </div>
+                    <div id="contenidoS" class="contenidoS" style="display: none;">
+                        <img src="/imagenes/html5.png" class="java" alt="">
+                        <img src="/imagenes/CSS.png" class="java" alt="">
+                        <img src="/imagenes/js.png" class="java" alt="">
+                        <img src="/imagenes/python.png" class="java" alt="">
+                        <img src="/imagenes/C.png" class="java" alt="">
+                        <img src="/imagenes/C++.png" class="java" alt="">
+                        <img src="/imagenes/CP.png" class="java" alt="">
+                        <img src="/imagenes/java.png" class="java" alt="">
+                        <img src="/imagenes/SB.png" class="java" alt="">
+                        <img src="/imagenes/sql.png" class="java" alt="">
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="profile">
+                        <img src="/imagenes/profile.jpeg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer th:insert="~{fragments/footer :: pie-pagina}" class="footerS"></footer>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
