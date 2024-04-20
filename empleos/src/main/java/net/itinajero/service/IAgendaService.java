@@ -14,4 +14,5 @@ public interface IAgendaService
 	List<Agenda> buscarTodas();
 	Page<Agenda> buscarPorCompanyCode(Pageable page,String companyCode);
 	Agenda buscarPorid(Integer idVacante);
+	void eliminarPorIdRH(Integer idRH);
 }

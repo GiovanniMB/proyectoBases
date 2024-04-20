@@ -47,7 +47,7 @@
                     <div class="col-md-6"> 
                       <div class="form-group">
                         <label for="archivoCV">Curriculm Vitae</label>
-                        <input type="file" class="form-control-file" name="archivoCV" id="archivoCV" required="true">
+                        <input type="file" class="form-control-file" name="archivoCV" id="archivoCV" required="true" onchange="validarTamañoArchivo(this)">
                         <p class="help-block">Solo se permiten archivos [ pdf,doc,docx ]</p>
                       </div>
                     </div>
@@ -69,6 +69,22 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> 
-    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>     
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>  
+    <script>
+    function validarTamañoArchivo(input) {
+        // Obtener el tamaño del archivo seleccionado
+        var fileSize = input.files[0].size; // Tamaño en bytes
+        var maxSize = 2 * 1024 * 1024; // 2MB en bytes
+        
+        // Verificar si el tamaño del archivo excede el límite
+        if (fileSize > maxSize) {
+            // El archivo es demasiado grande, mostrar un mensaje de error
+            alert("El tamaño del archivo excede el límite permitido (2MB)");
+            // Limpiar el valor del campo de entrada de archivo para que el usuario pueda seleccionar otro archivo
+            input.value = ''; // Limpiar el valor del campo de entrada de archivo
+        }
+    }
+</script>
+       
   </body>
 </html>

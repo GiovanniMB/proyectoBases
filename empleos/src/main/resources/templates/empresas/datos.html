@@ -39,14 +39,12 @@
 	                     <div class="col-8 col-sm-4">
 	                        <p><strong>RFC:</strong> <span th:text="${empresa.rfc}">RFC de la empresa</span></p>
 	                    </div>
-	                 </div>   
-	                    <div class="col-md-4">
-	                        <p><strong>Historia:</strong> <span th:text="${empresa.hisEmpresa.historia}">Historia de la empresa</span></p> 
-	                    </div>
-	                    <div class="col-md-4">
+	                 </div>
+	                 <div class="row">  
+	                    <div class="col-8 col-sm-12">
 	                        <p><strong>Teléfono:</strong> <span th:text="${empresa.telefono}">Teléfono de la empresa</span></p>
-	                        <!-- Agregar más campos aquí -->
 	                    </div>
+	                  </div>
 	                
                 </div>
                 <hr>
@@ -72,9 +70,31 @@
                 		</div>
                 	</div>
                 </div>
+                <div class="col-sm-12">
+                	<h5 class="card-title"><strong>Origen de la empresa</strong></h5>
+                	<div class="row">
+               			 <div class="col-8 col-sm-4">
+	                        <p><strong>Historia:</strong> <span th:text="${empresa.hisEmpresa.historia}">Historia de la empresa</span></p> 
+	                    </div>
+	                    <div class="col-8 col-sm-4">
+	                        <p><strong>Fecha de constitución:</strong> <span th:text="${#dates.format(empresa.hisEmpresa.fechaCreacion, 'yyyy-MM-dd')}">Historia de la empresa</span></p> 
+	                    </div>
+	                    <div class="col-8 col-sm-4">
+	                        <p><strong>Socios:</strong></p>
+							<ul>
+							    <li th:each="socio : ${empresa.hisEmpresa.socios}">
+							        <span th:text="${socio.nombre}">Nombre del socio</span>
+							    </li>
+							</ul>
+	                    </div>
+	                 </div>
+	             </div>    
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                         <p><strong>Descripción:</strong> <span th:utext="${empresa.descripcion}">Breve descripción de la empresa</span></p>
+                    </div>
+                    <div class="col-md-4">
+                        <img th:src="@{/logos/{img} (img=${empresa.imagen}) }" alt="Texto alternativo de la imagen">
                     </div>
                 </div>
             </div>

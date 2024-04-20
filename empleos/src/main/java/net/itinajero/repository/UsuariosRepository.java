@@ -20,4 +20,5 @@ public interface UsuariosRepository extends JpaRepository<Usuario, Integer> {
     @Query("UPDATE Usuario u SET u.estatus=1 WHERE u.id = :paramIdUsuario")
     int unlock(@Param("paramIdUsuario") int idUsuario);
 	
+	Usuario findByEmpresaCompanyCode(String companyCode);
 }

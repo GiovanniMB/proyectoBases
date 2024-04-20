@@ -8,5 +8,6 @@ public interface EmpresasRepository extends JpaRepository<Empresa,String>
 {
 	//Buscar por companyCode
 	Empresa findBycompanyCode(String companyCode);
-	
+	//Eliminar por companyCode
+	void deleteBycompanyCode(String companyCode);
 }

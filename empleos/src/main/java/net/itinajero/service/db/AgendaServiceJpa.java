@@ -47,4 +47,8 @@ public class AgendaServiceJpa implements IAgendaService
 		}
 		return null;
 	}
+	public void eliminarPorIdRH(Integer idRH) 
+	{
+		agendaRepo.deleteByUsuarioRHId(idRH);
+	}
 }

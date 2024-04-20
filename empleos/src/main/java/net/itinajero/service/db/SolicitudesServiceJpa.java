@@ -62,5 +62,9 @@ public class SolicitudesServiceJpa implements ISolicitudesService
 	{
 		return SolicitudesRepo.countByVacanteAndUsuario(idVacante, idUsuario);
 	}
+	public void eliminarPorIdVacante(Integer idVacante) 
+	{
+		SolicitudesRepo.deleteByVacanteId(idVacante);
+	}
 
 }

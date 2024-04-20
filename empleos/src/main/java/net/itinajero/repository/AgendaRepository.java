@@ -9,4 +9,5 @@ import net.itinajero.model.Agenda;
 public interface AgendaRepository extends JpaRepository<Agenda,Integer>
 {
 	Page<Agenda> findBySolicitudVacanteEmpresaCompanyCode(Pageable pageable, String companyCode);
+	void deleteByUsuarioRHId(Integer idRH);
 }

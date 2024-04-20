@@ -33,31 +33,19 @@
               <thead class="thead-light">
                 <tr>
                   <th scope="col">Razon social</th>
-                  <th scope="col">Username</th>                  
                   <th scope="col">RFC</th>
-                  <th scope="col">Estatus</th>
+                  <th scope="col">Company Code</th>
                   <th scope="col">Operaciones</th>
                 </tr>
               </thead>
               <tbody>
                 <tr th:each="empresa : ${empresas}">
                   <td th:text="${empresa.razonSocial}">Iván Eliseo Tinajero Díaz</td>
-                  <td th:text="${empresa.username}">itinajero</td>                  
                   <td th:text="${empresa.rfc}">ivanetinajero@gmail.com</td>
-                  <td th:text="${empresa.estatus == 1 ? 'Activo' : 'Bloqueado' }">Activo</td>
-                  
+                  <td th:text="${empresa.companyCode}">itinajero</td>                  
                   <td>
-                    <a  class="btn btn-success btn-sm confirmar" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
-                    
-                    <span th:switch="${empresa.estatus}"> 
-                    
-                       <a th:case="'1'" th:href="@{/usuarios/lock/{id} (id=${empresa.id}) }" class="btn btn-success btn-sm" role="button" title="Bloquear el acceso al sistema para este usuario."><i class="fas fa-lock" aria-hidden="true"></i></a>	
-						<a th:case="'0'" th:href="@{/usuarios/unlock/{id} (id=${empresa.id}) }" class="btn btn-success btn-sm" role="button" title="Permitir el acceso al sistema a este usuario."><i class="fas fa-unlock" aria-hidden="true"></i></a>
-
-					   
-						   </span>
-                    
-                  </td>
+                    <a th:href="@{'/empresas/delete/' + ${empresa.companyCode}}" class="btn btn-success btn-sm confirmar" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>   
+                   </td>
                 </tr>                
                                
               </tbody>

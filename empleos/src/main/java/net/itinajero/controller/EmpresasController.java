@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,10 +36,15 @@ import net.itinajero.model.HistoriaEmpresa;
 import net.itinajero.model.Municipio;
 import net.itinajero.model.Socio;
 import net.itinajero.model.Usuario;
+import net.itinajero.model.Vacante;
+import net.itinajero.service.IAgendaService;
 import net.itinajero.service.IColoniasService;
 import net.itinajero.service.IEmpresasService;
 import net.itinajero.service.IEstadosService;
 import net.itinajero.service.IMunicipiosService;
+import net.itinajero.service.ISolicitudesService;
+import net.itinajero.service.IUsuariosService;
+import net.itinajero.service.IVacanteService;
 import net.itinajero.util.Utileria;
 
 @Controller
@@ -60,6 +67,15 @@ public class EmpresasController
 	@Autowired
 	@Qualifier("coloniasServiceJpa")
 	private IColoniasService serviceColonia;
+	
+	@Autowired
+	private IUsuariosService serviceUsuarios;
+	@Autowired
+	private IAgendaService serviceAgenda;
+	@Autowired
+	private IVacanteService serviceVacantes;
+	@Autowired
+	private ISolicitudesService serviceSolicitudes;
 	
 	@GetMapping("/index")
 	public String mostrarIndex(Model model)
@@ -147,9 +163,28 @@ public class EmpresasController
 	    {
 	        // Manejar la excepción si ocurre un problema al deserializar la cadena JSON
 	        e.printStackTrace();
+	        attributes.addFlashAttribute("msg", "Error en los nombres de soscios");
 	        // Devolver una vista de error o redireccionar a una página de error
-	        return "error";
+	        return "redirect:/";
 	    }
+	}
+	@GetMapping("/delete/{companyCode}")
+	@Transactional
+	public String eliminar(@PathVariable("companyCode") String companyCode, RedirectAttributes attributes)
+	{
+		
+		Usuario usuario = serviceUsuarios.buscarPorCompanyCode(companyCode);
+		List<Vacante> list =serviceVacantes.buscarTodasPorCompanyCode(companyCode);
+		for(Vacante vacante : list)
+		{
+			serviceSolicitudes.eliminarPorIdVacante(vacante.getId());
+		}
+		serviceVacantes.eliminarPorCompanyCode(companyCode);
+		serviceAgenda.eliminarPorIdRH(usuario.getId());
+		serviceUsuarios.eliminar(usuario.getId());
+		serviceEmpresas.eliminar(companyCode);
+		attributes.addFlashAttribute("msg", "La empresa fue eliminada!.");
+		return "redirect:/empresas/index";
 	}
 	@GetMapping("/estado")
 	public String ajaxEstados(@RequestParam("estadoId") Integer idEstado, Model model)

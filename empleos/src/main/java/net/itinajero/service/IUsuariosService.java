@@ -14,4 +14,5 @@ public interface IUsuariosService
 	Usuario buscarPorId(Integer idUsuario);
 	int bloquear(int idUsuario);
 	int activar(int idUsuario);
+	Usuario buscarPorCompanyCode(String companyCode);
 }

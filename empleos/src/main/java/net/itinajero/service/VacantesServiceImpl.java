@@ -110,5 +110,20 @@ public class VacantesServiceImpl implements IVacanteService
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public int buscarSolicitud(Integer idVacante) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public void eliminarPorCompanyCode(String companyCode) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public List<Vacante> buscarTodasPorCompanyCode(String companyCode) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 		
 }

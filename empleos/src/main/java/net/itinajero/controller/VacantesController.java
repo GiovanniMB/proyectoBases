@@ -131,9 +131,17 @@ public class VacantesController
 	public String eliminar(@PathVariable("id") int idVacante,
 			RedirectAttributes attributes)
 	{
-		serviceVacantes.eliminar(idVacante);
-		attributes.addFlashAttribute("msg","La vacante fue eliminada");
-		return "redirect:/vacantes/indexPaginate";
+		if(serviceVacantes.buscarSolicitud(idVacante)>0)
+		{
+			attributes.addFlashAttribute("msg1","Tienes solicitudes pendientes por revisar antes de poder eliminar la vacante");
+			return "redirect:/vacantes/indexPaginate";
+		}
+		else
+		{
+			serviceVacantes.eliminar(idVacante);
+			attributes.addFlashAttribute("msg","La vacante fue eliminada");
+			return "redirect:/vacantes/indexPaginate";
+		}
 	}
 	
 	@GetMapping("/view/{id}")

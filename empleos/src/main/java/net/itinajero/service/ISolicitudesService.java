@@ -17,4 +17,5 @@ public interface ISolicitudesService
 	Page<Solicitud> buscarPorCompanyCode(Pageable page,String companyCode);
 	Page<Solicitud> buscarPorCompanyCodeAndNotA(Pageable page,String companyCode);
 	int buscarExistente(Integer idVacante, Integer idUsuario);
+	void eliminarPorIdVacante(Integer idVacante);
 }

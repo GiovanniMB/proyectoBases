@@ -64,4 +64,10 @@ public class UsuariosServiceJpa implements IUsuariosService {
 		return rows;
 	}
 
+	@Override
+	public Usuario buscarPorCompanyCode(String companyCode) 
+	{
+		return usuariosRepo.findByEmpresaCompanyCode(companyCode);
+	}
+
 }

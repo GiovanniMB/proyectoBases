@@ -65,4 +65,16 @@ public class VacantesServiceJpa implements IVacanteService
 	{
 		return vacantesRepo.findByEmpresaCompanyCode(page,companyCode);
 	}
+	public int buscarSolicitud(Integer idVacante) 
+	{
+		return vacantesRepo.countSolicitudesByVacanteId(idVacante);
+	}
+	public void eliminarPorCompanyCode(String companyCode) 
+	{
+		vacantesRepo.deleteByEmpresaCompanyCode(companyCode);
+	}
+	public List<Vacante> buscarTodasPorCompanyCode(String companyCode) 
+	{
+		return vacantesRepo.findByEmpresaCompanyCode(companyCode);
+	}
 }

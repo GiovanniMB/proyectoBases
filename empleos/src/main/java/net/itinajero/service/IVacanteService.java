@@ -18,4 +18,7 @@ public interface IVacanteService
 	List<Vacante> buscarByExample(Example<Vacante> example);
 	Page<Vacante>buscarTodas(Pageable page);
 	Page<Vacante>buscarPorCompanyCode(Pageable page,String companyCode);
+	int buscarSolicitud(Integer idVacante);
+	void eliminarPorCompanyCode(String companyCode);
+	List<Vacante> buscarTodasPorCompanyCode(String companyCode);
 }
