@@ -14,9 +14,10 @@
     <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
     <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/stylesT.css">
   </head>
 
-  <body>
+  <body class="pers">
 
     <header th:insert="~{fragments/menu :: menu-principal}"></header>
 
@@ -24,10 +25,10 @@
       <hr>
       <div class="container"> 
 
-        <div class="card">
-          <h4 class="card-header"><strong>Listado de Ofertas de Trabajo</strong></h4>              
-          <div class="card-body">
-            <a class="btn btn-primary" th:href="@{/vacantes/create}" title="Crear nueva Oferta de Trabajo" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a>            
+        <div class="cardA">
+          <h4 class="cardA-header"><strong>Listado de Ofertas de Trabajo</strong></h4>              
+          <div class="cardA-body">
+            <a class="btn btnPropio" th:href="@{/vacantes/create}" title="Crear nueva Oferta de Trabajo" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a>            
             <hr>
             <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
             <div th:if="${msg1 != null}" class='alert alert-warning' th:text="${msg1}" role='alert'></div>
@@ -57,14 +58,14 @@
                   <td th:text="${vacante.destacado==1 ? 'SI' : 'NO' }">Creada</td>
                   -->                  
                   <td>
-                    <a th:href="@{/vacantes/edit/{id} (id=${vacante.id}) }" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-                    <a th:href="@{/vacantes/delete/{id} (id=${vacante.id}) }" class="btn btn-success btn-sm confirmar" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    <a th:href="@{/vacantes/edit/{id} (id=${vacante.id}) }" class="btn btnPropio btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    <a th:href="@{/vacantes/delete/{id} (id=${vacante.id}) }" class="btn btnPropio btn-sm confirmar" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
                   </td>
                 </tr>                                              
               </tbody>
             </table>
 				<nav th:if="${vacantes.totalPages > 1}" aria-label="Page navigation example" >
-				  <ul class="pagination">         
+				  <ul class="pagination justify-content-center">         
 					<li class="page-item"><a th:href="@{/vacantes/indexPaginate(page=${vacantes.number - 1})}" class="page-link">Anterior</a></li>			    
 					<li class="page-item"><a th:href="@{/vacantes/indexPaginate(page=${vacantes.number + 1})}" class="page-link">Siguiente</a></li>
 				  </ul>
@@ -76,7 +77,7 @@
 
     </main>
 
-    <footer th:insert="~{fragments/footer :: pie-pagina}" class="footer"></footer>
+    <footer th:insert="~{fragments/footer :: pie-pagina}" class="footerT"></footer>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

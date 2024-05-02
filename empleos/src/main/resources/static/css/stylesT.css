@@ -176,8 +176,8 @@ nav .hamburger.active .bar
 .btn:hover
 {
   transform: translateY(-5px);
-  color: var(--text-color);
-  background: transparent;
+  color: #380269;
+  background: #bb7eff;
 }
 .home-info .right
 {

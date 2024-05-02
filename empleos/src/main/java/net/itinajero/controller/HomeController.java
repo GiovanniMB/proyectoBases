@@ -186,6 +186,29 @@ public class HomeController {
 		return "home";
 	}
 	
+	@GetMapping("/juegoOc")
+	public String mostrarJuegoOc() {			
+		return "juegoOc";
+	}
+	
+	/**
+	 * Metodo que muestra la vista de la pagina de Acerca
+	 * @return
+	 */
+	@GetMapping("/historiaEmpresa")
+	public String mostrarhistoriaEmpresa(Model model) {
+		List<Empresa> lista = serviceEmpresas.buscarTodos();
+		model.addAttribute("empresas", lista);
+		for (Empresa empresa : lista) {
+	        if (empresa.getHisEmpresa() == null) {
+	            return "histEmFall"; // Si alguna historia es null, retorna "home" directamente
+	        }
+	    }
+
+	    // Si no se encontró ninguna historia null, se continúa y se muestra "historiaEmpresa"
+	    return "historiaEmpresa";
+	}
+	
 	/**
 	 * Metodo que muestra la vista de la pagina de Acerca
 	 * @return

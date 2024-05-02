@@ -1,0 +1,121 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>EmpleosApp | Completar Datos de Empresa</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+<header th:insert="~{fragments/menu :: menu-principal}"></header>
+
+<main role="main">
+    <hr>
+    <div class="container">
+
+        <div class="card">
+            <h4 class="card-header"><strong>Datos de la Empresa</strong></h4>
+            <div class="card-body">
+            	<div class="col-sm-12">
+	                <div class="row">
+	                    <div class="col-8 col-sm-4">
+	                        <p><strong>Código de la Empresa:</strong> <span th:text="${empresa.companyCode}">Código de la empresa</span></p>
+	                     </div>
+	                     <div class="col-8 col-sm-4">
+	                        <p><strong>Razón Social:</strong> <span th:text="${empresa.razonSocial}">Razón social de la empresa</span></p>
+	                    </div>
+	                     <div class="col-8 col-sm-4">
+	                        <p><strong>RFC:</strong> <span th:text="${empresa.rfc}">RFC de la empresa</span></p>
+	                    </div>
+	                 </div>
+	                 <div class="row">  
+	                    <div class="col-8 col-sm-12">
+	                        <p><strong>Teléfono:</strong> <span th:text="${empresa.telefono}">Teléfono de la empresa</span></p>
+	                    </div>
+	                  </div>
+	                
+                </div>
+                <hr>
+                <div class="col-sm-12">
+                	<h5 class="card-title"><strong>Direccion de la empresa</strong></h5>
+                	<div class="row">
+	                	<div class="col-8 col-sm-4">
+		                	<p><strong>Calle:</strong> <span th:text="${empresa.direccion.calle}">Calle de la dirección</span></p>
+		                </div>
+		                <div class="col-8 col-sm-4">	
+		                	<p><strong>Número:</strong> <span th:text="${empresa.direccion.numero}">Calle de la dirección</span></p>
+		                </div>
+		                 <div class="col-8 col-sm-4">
+		                	<p><strong>Colonia:</strong> <span th:text="${empresa.direccion.colonia.nombre}">Colonia de la empresa</span></p>
+                		</div>
+                	</div>
+                	<div class="row">
+	                	<div class="col-8 col-sm-6">
+		                	<p><strong>Municipio:</strong> <span th:text="${empresa.direccion.colonia.municipio.nombre}">Municipio de la empresa</span></p>
+		                </div>
+		                <div class="col-8 col-sm-6">	
+		                	<p><strong>Estado:</strong> <span th:text="${empresa.direccion.colonia.municipio.estado.nombre}">Estado de la empresa</span></p>
+                		</div>
+                	</div>
+                </div>
+                <div class="col-sm-12">
+                	<h5 class="card-title"><strong>Origen de la empresa</strong></h5>
+                	<div class="row">
+               			 <div class="col-8 col-sm-4">
+	                        <p><strong>Historia:</strong> <span th:text="${empresa.hisEmpresa.historia}">Historia de la empresa</span></p> 
+	                    </div>
+	                    <div class="col-8 col-sm-4">
+	                        <p><strong>Fecha de constitución:</strong> <span th:text="${#dates.format(empresa.hisEmpresa.fechaCreacion, 'yyyy-MM-dd')}">Historia de la empresa</span></p> 
+	                    </div>
+	                    <div class="col-8 col-sm-4">
+	                        <p><strong>Socios:</strong></p>
+							<ul>
+							    <li th:each="socio : ${empresa.hisEmpresa.socios}">
+							        <span th:text="${socio.nombre}">Nombre del socio</span>
+							    </li>
+							</ul>
+	                    </div>
+	                 </div>
+	             </div>    
+                <div class="row">
+                    <div class="col-md-8">
+                        <p><strong>Descripción:</strong> <span th:utext="${empresa.descripcion}">Breve descripción de la empresa</span></p>
+                    </div>
+                    <div class="col-md-4">
+                        <img th:src="@{/logos/{img} (img=${empresa.imagen}) }" alt="Texto alternativo de la imagen">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- /container -->
+
+</main>
+
+<footer th:insert="~{fragments/footer :: pie-pagina}" class="footer"></footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#fechaCreacion").datepicker({dateFormat: 'dd-mm-yy'});
+    });
+</script>
+</body>
+</html>

@@ -14,9 +14,10 @@
     <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
     <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
     <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+     <link rel="stylesheet" href="/css/stylesT.css">
   </head>
 
-  <body>
+  <body class="pers">
 
     <header th:insert="~{fragments/menu :: menu-principal}"></header>
 
@@ -24,29 +25,29 @@
       <hr>
       <div class="container"> 
 
-        <div class="card">
-          <h4 class="card-header"><strong>Datos de la Entrevista</strong></h4>              
-          <div class="card-body">
+        <div class="cardC">
+          <h4 class="cardC-header"><strong>Datos de la Entrevista</strong></h4>              
+          <div class="cardA-body">
           <h5 class="card-title"><strong>Postulante: </strong><span th:text="${solicitud.usuario.nombre}"></span></h5>
           <h6 class="card-title"><strong>Vacante: </strong><span th:text="${solicitud.vacante.nombre}"></span></h6>
             <form th:action="@{/agenda/save}" th:object="${agenda}" method="post" enctype="multipart/form-data">
             <input type="hidden" th:field="*{solicitud}" th:value="${agenda.solicitud}" />
               <div class="row">
                 <div class="col-md-3"> 
-	                  <div class="form-group">
+	                  <div class="formE-group">
 	                    <label for="fechaCreacion">Fecha de Entrevista</label>
-	                    <input type="text" class="form-control" name="fecha" th:field="*{fecha}" id="fecha" placeholder="Fecha de entrevista" required="required">
+	                    <input type="text" class="formCl-control" name="fecha" th:field="*{fecha}" id="fecha" placeholder="Fecha de entrevista" required="required">
 	                  </div>  
 	            </div>
              </div> 
-              <button type="submit" class="btn btn-primary">Agendar</button>  
+              <button type="submit" class="btn btnPropio">Agendar</button>  
             </form>
           </div>
         </div>
       </div> <!-- /container -->
     </main>
 
-    <footer th:insert="~{fragments/footer :: pie-pagina}" class="footer"></footer>
+    <footer th:insert="~{fragments/footer :: pie-pagina}" class="footerT"></footer>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

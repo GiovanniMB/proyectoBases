@@ -16,7 +16,7 @@
     <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet" >
   </head>
 
-  <body>
+  <body class="pers">
 
     <header th:insert="~{fragments/menu :: menu-principal}"></header>
 
@@ -24,9 +24,9 @@
       <hr>
       <div class="container"> 
 
-        <div class="card">
-          <h4 class="card-header"><strong>Listado de Solicitudes de Empleo</strong></h4>              
-          <div class="card-body">
+        <div class="cardA">
+          <h4 class="cardA-header"><strong>Listado de Solicitudes de Empleo</strong></h4>              
+          <div class="cardA-body">
           	<div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
             <table class="table table-hover">
               <thead class="thead-light">
@@ -45,17 +45,17 @@
                   <td th:text="${solicitud.usuario.nombre}">Maria Gómez</td>
                   <td th:text="${solicitud.fecha}">12-01-2019</td>
                   <td>                    
-                    <a th:href="@{/solicitudes/delete/{id} (id=${solicitud.id}) }" class="btn btn-success btn-sm confirmar" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>                    
-                    <a th:href="@{/cv/{archivo} (archivo=${solicitud.archivo}) } " target="_blank" class="btn btn-success btn-sm" role="button" title="Descargar Curriculm Vitae."><i class="fas fa-download" aria-hidden="true"></i></a>
-                    <a th:href="@{/agenda/crearEntrevista/{idSolicitud} (idSolicitud=${solicitud.id}) }" class="btn btn-success btn-sm" role="button" title="Agendar entrevista."><i class="fa fa-address-book" aria-hidden="true"></i></a>
+                    <a th:href="@{/solicitudes/delete/{id} (id=${solicitud.id}) }" class="btn btnPropio btn-sm confirmar" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>                    
+                    <a th:href="@{/cv/{archivo} (archivo=${solicitud.archivo}) } " target="_blank" class="btn btnPropio btn-sm" role="button" title="Descargar Curriculm Vitae."><i class="fas fa-download" aria-hidden="true"></i></a>
+                    <a th:href="@{/agenda/crearEntrevista/{idSolicitud} (idSolicitud=${solicitud.id}) }" class="btn btnPropio btn-sm" role="button" title="Agendar entrevista."><i class="fa fa-address-book" aria-hidden="true"></i></a>
                   </td>
                 </tr>
               </tbody>
             </table>
-            <nav th:if="${solicitudes.totalPages > 0}" aria-label="Page navigation example" >
-				  <ul class="pagination">         
-				    <li class="page-item"><a th:href="@{/solicitudes/indexPaginate(page=${solicitudes.number - 1})}" class="page-link">Anterior</a></li>			    
-				    <li class="page-item"><a th:href="@{/solicitudes/indexPaginate(page=${solicitudes.number + 1})}" class="page-link">Siguiente</a></li>
+            <nav th:if="${solicitudes.totalPages > 1}" aria-label="Page navigation example" >
+				  <ul class="pagination justify-content-center">         
+				    <li class="page-item"><a th:href="@{/solicitudes/indexPaginate(page=${solicitudes.number - 1})}" class="btn btnPropio">Anterior</a></li>			    
+				    <li class="page-item"><a th:href="@{/solicitudes/indexPaginate(page=${solicitudes.number + 1})}" class="btn btnPropio">Siguiente</a></li>
 				  </ul>
 				</nav>
           </div>
@@ -64,7 +64,7 @@
 
     </main>
 
-    <footer th:insert="~{fragments/footer :: pie-pagina}" class="footer"></footer>
+    <footer th:insert="~{fragments/footer :: pie-pagina}" class="footerT"></footer>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

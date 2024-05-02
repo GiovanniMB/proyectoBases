@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmpleosApp | Acerca de Empleos App</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link rel="stylesheet" href="/css/stylesP.css">
+</head>
+<body>
+	
+    <header th:insert="~{fragments/menu :: menu-principal}"></header>
+<main>
+	<div>
+		<ul class='slider' >
+ 
+      <li th:each="empresa : ${empresas}" class="itemH" th:style="'background-image:url(' + @{/logos/} + ${empresa.hisEmpresa.imagen} + ');'">
+        <div class='contentH'>
+          <h2 class='titleH'th:text="${empresa.razonSocial}">"Estrange Bond"</h2>
+          <p class='descriptionH'th:text="${empresa.hisEmpresa.historia}"> Lorem ipsum, dolor sit amet consectetur
+          adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
+          praesentium nisi. Id laboriosam ipsam enim.  </p>
+        </div>
+      </li>
+    </ul>
+    <nav class='navH'>
+      <ion-icon class='btnSl prev' name="arrow-back-outline"></ion-icon>
+      <ion-icon class='btnSl next' name="arrow-forward-outline"></ion-icon>
+    </nav>
+	</div>
+    
+  </main>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+	</body>
+	</html>
+
+
+  <script>	
+
+const slider = document.querySelector('.slider');
+
+function activate(e) {
+  const items = document.querySelectorAll('.itemH');
+  e.target.matches('.next') && slider.append(items[0])
+  e.target.matches('.prev') && slider.prepend(items[items.length-1]);
+}
+
+document.addEventListener('click',activate,false);
+
+  </script>

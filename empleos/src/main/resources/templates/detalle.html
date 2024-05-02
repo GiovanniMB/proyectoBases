@@ -13,9 +13,10 @@
     <!-- Custom styles for this template -->
     <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
     <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link rel="stylesheet" href="/css/stylesP.css">
   </head>
 
-  <body>
+  <body class="pers">
   
     <header th:insert="~{fragments/menu :: menu-principal}"></header>
   
@@ -28,9 +29,9 @@
             <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen}) } " alt="Generic placeholder image" width="220" height="220">            
           </div>
           <div class="col-md-9">
-            <div class="card">
-              <h4 class="card-header">Aplicar para <strong th:text="${vacante.nombre}">Ingeniero Civil</strong></h4>              
-              <div class="card-body">
+            <div class="cardA">
+              <h4 class="cardA-header">Aplicar para <strong th:text="${vacante.nombre}">Ingeniero Civil</strong></h4>              
+              <div class="cardA-body">
               	<div class="alert alert-danger" role="alert" sec:authorize="isAnonymous()">
 				  ¿Te interesa esta Vacante? <strong>Regístrate</strong> y después ingresa para enviar tu CV.
 				</div>
@@ -39,13 +40,13 @@
                 <h6 class="card-title"><strong>Salario Ofrecido: $</strong><span th:text="${vacante.salario}">$9000</span></h6>                
                 <p class="card-text" th:text="${vacante.descripcion}">La descripción corta de la oferta de trabajo</p>
                 
-                <div class="card bg-light mb-3" >
-                  <div class="card-body">
-                    <h5 class="card-title">Detalles de la oferta de trabajo</h5>
-                    <p class="card-text" th:utext="${vacante.detalles}"></p>
+                <div class="cardB bg-light mb-3" >
+                  <div class="cardB-body">
+                    <h5 class="cardB-title">Detalles de la oferta de trabajo</h5>
+                    <p class="cardB-text" th:utext="${vacante.detalles}"></p>
                   </div>
                 </div>                   
-                <a sec:authorize="isAuthenticated() and hasAnyAuthority('USUARIO')" class="btn btn-primary" th:href="@{/solicitudes/create/{id} (id=${vacante.id}) }" role="button" title="Quiero aplicar para esta oferta de trabajo."><i class="fas fa-file" aria-hidden="true"></i> Aplicar</a>                            
+                <a sec:authorize="isAuthenticated() and hasAnyAuthority('USUARIO')" class="btn btnPropio" th:href="@{/solicitudes/create/{id} (id=${vacante.id}) }" role="button" title="Quiero aplicar para esta oferta de trabajo."><i class="fas fa-file" aria-hidden="true"></i> Aplicar</a>                            
               </div>
             </div>  
           </div>
@@ -54,7 +55,7 @@
       </div>
     </main>
 
-    <footer th:insert="~{fragments/footer :: pie-pagina}" class="footer"></footer>
+    <footer th:insert="~{fragments/footer :: pie-pagina}" class="footerT"></footer>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

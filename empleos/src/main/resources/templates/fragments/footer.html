@@ -1,6 +1,375 @@
 <div th:fragment="pie-pagina" class="container">
+	<link rel="stylesheet" href="/css/stylesP.css">
         <p>
           &copy; 2024 EmpleosApp, Inc. | WebApp Desarrollada con Spring Boot 3.2.0 | Autor: Team Maui | &middot; <a class="P" th:href="@{/Millan}">Millan</a>
-          &middot; <a class="P" th:href="@{/Tajonar}">Tajonar</a>
+          &middot; <a class="P" th:href="@{/Tajonar}">Tajonar &middot; <a class="P" th:href="@{/juegoOc}">⦿</a>
         </p>
+        <label class="theme-switch">
+      <input type="checkbox" id="theme-switcher" class="checkboxM">
+      <div class="containerM">
+        <div class="circleM-containerM">
+          <div class="sun-moon-containerM">
+            <div class="moon">
+              <div class="spotM"></div>
+              <div class="spotM"></div>
+              <div class="spotM"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </label>
+    <script>
+		// Función para cambiar el tema
+function toggleTheme() {
+  var body = document.body;
+  //cambiar los botones
+  function changeButtonStyles(fromClass, toClass) {
+  var buttons = document.querySelectorAll('.' + fromClass); 
+  buttons.forEach(function(button) {
+    button.classList.remove(fromClass); 
+    button.classList.add(toClass); 
+  });
+}
+
+// Función para cambiar el estilo del jumbotron
+function changeJumbotronStyles(fromClass, toClass) {
+  var jumbotrons = document.querySelectorAll('.' + fromClass); 
+  jumbotrons.forEach(function(jumbotron) {
+    jumbotron.classList.remove(fromClass); 
+    jumbotron.classList.add(toClass); 
+  });
+}
+
+// Función para cambiar el estilo del footer
+function changeFooterStyles(fromClass, toClass) {
+  var footers = document.querySelectorAll('.' + fromClass);
+  footers.forEach(function(footer) {
+    footer.classList.remove(fromClass); 
+    footer.classList.add(toClass); 
+  });
+}
+
+function changeNavbarClass() {
+  var navbar = document.querySelector('.navbar'); // Seleccionar el elemento con la clase 'navbar'
+  var classes = navbar.className.split(' '); // Obtener todas las clases del elemento
+
+  // Verificar si la clase 'bg-darkCl' está presente en el elemento
+  if (classes.includes('bg-darkCl')) {
+    var index = classes.indexOf('bg-darkCl'); // Encontrar el índice de la clase 'bg-darkCl'
+    classes[index] = 'bg-dark'; // Reemplazar 'bg-darkCl' con 'bg-dark'
+    navbar.className = classes.join(' '); // Actualizar las clases del elemento
+  }
+}
+
+function revertNavbarClass() {
+  var navbar = document.querySelector('.navbar'); // Seleccionar el elemento con la clase 'navbar'
+  var classes = navbar.className.split(' '); // Obtener todas las clases del elemento
+
+  // Verificar si la clase 'bg-dark' está presente en el elemento
+  if (classes.includes('bg-dark')) {
+    var index = classes.indexOf('bg-dark'); // Encontrar el índice de la clase 'bg-dark'
+    classes[index] = 'bg-darkCl'; // Reemplazar 'bg-dark' con 'bg-darkCl'
+    navbar.className = classes.join(' '); // Actualizar las clases del elemento
+  }
+}
+
+
+
+function changeTableHeadClass() {
+  var tableHeads = document.querySelectorAll('.thead-light'); // Seleccionar todos los elementos con la clase 'thead-light'
+  tableHeads.forEach(function(tableHead) {
+    var classes = tableHead.className.split(' '); // Obtener todas las clases del elemento
+    // Verificar si la clase 'thead-light' está presente en el elemento
+    if (classes.includes('thead-light')) {
+      var index = classes.indexOf('thead-light'); // Encontrar el índice de la clase 'thead-light'
+      classes[index] = 'thead-lightOs'; // Reemplazar 'thead-light' con 'thead-lightOs'
+      tableHead.className = classes.join(' '); // Actualizar las clases del elemento
+    }
+  });
+}
+
+function revertTableHeadClass() {
+  var tableHeads = document.querySelectorAll('.thead-lightOs'); // Seleccionar todos los elementos con la clase 'thead-lightOs'
+  tableHeads.forEach(function(tableHead) {
+    var classes = tableHead.className.split(' '); // Obtener todas las clases del elemento
+    // Verificar si la clase 'thead-lightOs' está presente en el elemento
+    if (classes.includes('thead-lightOs')) {
+      var index = classes.indexOf('thead-lightOs'); // Encontrar el índice de la clase 'thead-lightOs'
+      classes[index] = 'thead-light'; // Reemplazar 'thead-lightOs' con 'thead-light'
+      tableHead.className = classes.join(' '); // Actualizar las clases del elemento
+    }
+  });
+}
+
+
+// Función para cambiar el estilo del placeholder
+function changePlaceholderStyle() {
+    var elements = document.querySelectorAll('.form-control');
+    elements.forEach(function(element) {
+        element.classList.remove('form-control');
+        element.classList.add('formOs-controlOs');
+    });
+}
+
+// Función para cambiar la clase de los elementos
+function changeElementClassCard() {
+    var elements = document.querySelectorAll('.cardA-body');
+    elements.forEach(function(element) {
+        element.classList.remove('cardA-body');
+        element.classList.remove('cardA');
+        element.classList.remove('cardA-title');
+        element.classList.remove('cardA-header');
+        element.classList.remove('cardA-text');
+        
+        element.classList.add('cardAOs-body');
+        element.classList.add('cardAOs');
+        element.classList.add('cardAOs-title');
+        element.classList.add('cardAOs-header');
+        element.classList.add('cardAOs-text');
+    });
+}
+
+// Función para cambiar la clase de los elementos
+function changeElementClassCardB() {
+    var elements = document.querySelectorAll('.cardB-body');
+    elements.forEach(function(element) {
+        element.classList.remove('cardB-body');
+        element.classList.remove('cardB');
+        element.classList.remove('cardB-title');
+        element.classList.remove('cardB-header');
+        element.classList.remove('cardB-text');
+        
+        element.classList.add('cardBOs-body');
+        element.classList.add('cardBOs');
+        element.classList.add('cardBOs-title');
+        element.classList.add('cardBOs-header');
+        element.classList.add('cardBOs-text');
+    });
+}
+
+function revertElementClassCardB() {
+    var elements = document.querySelectorAll('.cardBOs-body');
+    elements.forEach(function(element) {
+        element.classList.remove('cardBOs-body');
+        element.classList.remove('cardBOs');
+        element.classList.remove('cardBOs-title');
+        element.classList.remove('cardBOs-header');
+        element.classList.remove('cardBOs-text');
+        
+        element.classList.add('cardB-body');
+        element.classList.add('cardB');
+        element.classList.add('cardB-title');
+        element.classList.add('cardB-header');
+        element.classList.add('cardB-text');
+    });
+}
+
+
+function changeFormControlClass() {
+  var formControls = document.querySelectorAll('.formCl-control'); // Seleccionar todos los elementos con la clase 'formCl-control'
+  formControls.forEach(function(formControl) {
+    var classes = formControl.className.split(' '); // Separar las clases en un array
+    if (classes.includes('formCl-control') && !classes.includes('form-control')) { 
+      
+      var newClasses = classes.map(function(className) {
+        return className === 'formCl-control' ? 'formOs-control' : className;
+      }).join(' ');
+      formControl.className = newClasses;
+    }
+  });
+}
+
+
+function revertFormControlClass() {
+  var formControls = document.querySelectorAll('.formOs-control'); 
+  formControls.forEach(function(formControl) {
+    formControl.classList.remove('formOs-control'); 
+    formControl.classList.add('formCl-control'); 
+  });
+}
+
+function changeFormEControlClass() {
+  var formControls = document.querySelectorAll('.formE-control'); // Seleccionar todos los elementos con la clase 'formCl-control'
+  formControls.forEach(function(formControl) {
+    var classes = formControl.className.split(' '); // Separar las clases en un array
+    if (classes.includes('formE-control') && !classes.includes('form-control')) { // Verificar si 'formCl-control' está presente y 'form-control' no está presente
+      // Reemplazar 'formCl-control' por 'formOs-control' manteniendo otras clases
+      var newClasses = classes.map(function(className) {
+        return className === 'formE-control' ? 'formEOs-control' : className;
+      }).join(' ');
+      formControl.className = newClasses;
+    }
+  });
+}
+
+
+function revertFormEControlClass() {
+  var formControls = document.querySelectorAll('.formEOs-control'); 
+  formControls.forEach(function(formControl) {
+    formControl.classList.remove('formEOs-control'); 
+    formControl.classList.add('formE-control'); 
+  });
+}
+
+
+function changeCustomSelectClass() {
+  var customSelects = document.querySelectorAll('.customCl-select'); 
+  customSelects.forEach(function(customSelect) {
+    var classes = customSelect.className;
+    
+    var newClasses = classes.replace('customCl-select', 'customOs-select');
+    customSelect.className = newClasses;
+  });
+}
+
+function revertCustomSelectClass() {
+  var customSelects = document.querySelectorAll('.customOs-select'); 
+  customSelects.forEach(function(customSelect) {
+    customSelect.classList.remove('customOs-select');
+    customSelect.classList.add('customCl-select'); 
+  });
+}
+
+function changeMCEClass() {
+  // Cambiar .mce-container a .mce-containerOs
+  var mceContainers = document.querySelectorAll('.mce-container');
+  mceContainers.forEach(function(element) {
+    element.classList.remove('mce-container');
+    element.classList.add('mce-containerOs');
+  });
+
+  // Cambiar .mce-flow-layout, .mce-menubar a .mce-flow-layoutOs, .mce-menubarOs
+  var mceOthers = document.querySelectorAll('.mce-flow-layout, .mce-menubar');
+  mceOthers.forEach(function(element) {
+    element.classList.remove('mce-flow-layout', 'mce-menubar');
+    element.classList.add('mce-flow-layoutOs', 'mce-menubarOs');
+  });
+}
+
+function revertMCEClass() {
+  // Revertir .mce-containerOs a .mce-container
+  var mceContainers = document.querySelectorAll('.mce-containerOs');
+  mceContainers.forEach(function(element) {
+    element.classList.remove('mce-containerOs');
+    element.classList.add('mce-container');
+  });
+
+  // Revertir .mce-flow-layoutOs, .mce-menubarOs a .mce-flow-layout, .mce-menubar
+  var mceOthers = document.querySelectorAll('.mce-flow-layoutOs, .mce-menubarOs');
+  mceOthers.forEach(function(element) {
+    element.classList.remove('mce-flow-layoutOs', 'mce-menubarOs');
+    element.classList.add('mce-flow-layout', 'mce-menubar');
+  });
+}
+
+  // Alternar las clases
+  if (body.classList.contains('pers')) {
+    body.classList.remove('pers');
+    body.classList.add('persOs');
+    changeButtonStyles('btnPropio', 'btnPropioOs');
+    changeJumbotronStyles('jumbotronPr', 'jumbotronPrOs');
+    changeFooterStyles('footerT', 'footerTOs');  
+    changePlaceholderStyle('formCl-control','formOs-control');
+	changeElementClassCard();
+	changeElementClassCardB();
+	changeNavbarClass();
+	changeTableHeadClass();
+	changeFormControlClass();
+	changeCustomSelectClass();
+	changeFormEControlClass();
+	changeMCEClass();
+  } else {
+    body.classList.remove('persOs');
+    body.classList.add('pers');
+    changeButtonStyles('btnPropioOs', 'btnPropio');
+    changeJumbotronStyles('jumbotronPrOs', 'jumbotronPr');
+    changeFooterStyles('footerTOs', 'footerT');
+    changePlaceholderStyle('formOs-control','formCl-control');
+     changeElementClassCard();
+     revertElementClassCardB();
+     revertNavbarClass();
+     revertTableHeadClass();
+     revertFormControlClass();
+     revertCustomSelectClass();
+     revertFormEControlClass();
+     revertMCEClass();
+  }
+}
+
+// Función para guardar el estado del tema en la cookie como JSON
+function saveThemeToCookie() {
+	
+	console.log("Guardando estado del tema en la cookie:", themeState);
+    
+    var body = document.body; // Obtener el elemento del cuerpo
+    var themeState = body.classList.contains('persOs') ? 'dark' : 'light';
+    
+    // Configurar la expiración de la cookie a 1 año en el futuro
+    var expires = new Date();
+    expires.setFullYear(expires.getFullYear() + 1);
+
+    var themeData = {
+        themeState: themeState
+    };
+
+    document.cookie = "themeData=" + JSON.stringify(themeData) + "; expires=" + expires.toUTCString() + "; path=/";
+}
+
+// Función para cargar el estado del tema desde la cookie cuando se carga la página
+function applyThemeFromCookie() {
+    var cookies = document.cookie.split(';').map(cookie => cookie.trim().split('='));
+    var themeCookie = cookies.find(cookie => cookie[0] === 'themeData');
+    if (themeCookie) {
+        var themeData = JSON.parse(themeCookie[1]);
+         console.log("Estado del tema leído de la cookie:", themeState); // Agregar esta línea para depurar
+        var themeState = themeData.themeState;
+        if (themeState === 'dark') {
+			
+            // Aplica el tema oscuro si está guardado en la cookie
+            toggleTheme();
+        }
+    }
+}
+
+// Función para guardar el estado del botón en la cookie
+function saveButtonStateToCookie(buttonState) {
+    var expires = new Date();
+    expires.setFullYear(expires.getFullYear() + 1);
+
+    // Guardar el estado del botón en la cookie
+    document.cookie = "buttonState=" + buttonState + "; expires=" + expires.toUTCString() + "; path=/";
+}
+
+// Función para cargar el estado del botón desde la cookie cuando se carga la página
+function applyButtonStateFromCookie() {
+    var cookies = document.cookie.split(';').map(cookie => cookie.trim().split('='));
+    var buttonCookie = cookies.find(cookie => cookie[0] === 'buttonState');
+
+    if (buttonCookie) {
+        var buttonState = buttonCookie[1];
+
+        console.log("Estado del botón leído de la cookie:", buttonState); // Agregar esta línea para depurar
+
+        // Aplicar el estado del botón guardado
+        themeSwitcher.checked = (buttonState === 'true'); // Marcar o desmarcar el botón según el estado guardado
+    }
+}
+
+window.onload = function() {
+    applyButtonStateFromCookie();
+    applyThemeFromCookie();
+};
+
+// Obtener el elemento del checkbox
+var themeSwitcher = document.getElementById('theme-switcher');
+
+// Añadir un evento de clic al checkbox
+themeSwitcher.addEventListener('click', function() {
+    toggleTheme();
+    saveThemeToCookie();
+    saveButtonStateToCookie(themeSwitcher.checked);
+});
+
+	</script>
 </div>
+

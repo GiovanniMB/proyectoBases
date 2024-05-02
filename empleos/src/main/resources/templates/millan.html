@@ -9,9 +9,10 @@
     <!-- Custom styles for this template -->
     <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
     <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link rel="stylesheet" href="/css/stylesJ.css">
     <link rel="stylesheet" href="/css/stylesT.css">
 </head>
-<body class="bodyS">
+<body class="pers">
     <header th:insert="~{fragments/menu :: menu-principal}"></header>
     <main class="home">
         <div class="containerT">
@@ -53,7 +54,7 @@
             </div>
         </div>
     </main>
-    <footer th:insert="~{fragments/footer :: pie-pagina}" class="footerS"></footer>
+    <footer th:insert="~{fragments/footer :: pie-pagina}" class="footerT"></footer>
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script src="/js/main.js"></script>
 </body>

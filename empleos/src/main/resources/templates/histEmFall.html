@@ -1,0 +1,38 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/stylesT.css">
+    <title>Disculpe las molestias</title>
+    </head>
+
+  <body class="pers">
+    <header th:insert="~{fragments/menu :: menu-principal}"></header>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="site">
+                        <h1 class="site__title">Historia de las Empresas en mantenimiento, Disculpe las molestias.</h1>
+                        <h2 class="site__subtitle">Una vez las empresas realicen los ajustes, la página estará nuevamente en funcionamiento. Gracias por su paciencia</h2>
+                        <img class="site__img" src="https://www.web-leb.com/assets/img/ess.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer th:insert="~{fragments/footer :: pie-pagina}" class="footerT"></footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

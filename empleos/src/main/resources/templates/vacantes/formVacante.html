@@ -14,9 +14,10 @@
     <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
     <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
     <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/stylesT.css">
   </head>
 
-  <body>
+  <body class="pers">
 
     <header th:insert="~{fragments/menu :: menu-principal}"></header>
 
@@ -24,9 +25,9 @@
       <hr>
       <div class="container"> 
 
-        <div class="card">
-          <h4 class="card-header"><strong>Datos de la oferta de trabajo</strong></h4>              
-          <div class="card-body">
+        <div class="cardA">
+          <h4 class="cardS-header"><strong>Datos de la oferta de trabajo</strong></h4>              
+          <div class="cardA-body">
             <form th:action="@{/vacantes/save}" th:object="${vacante}" method="post" enctype="multipart/form-data">
             
 	           	<div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>
@@ -42,13 +43,13 @@
                     <label for="nombre">Nombre</label>
                     <input type="hidden" th:field="*{id}">
                     <input type="hidden" th:field="*{imagen}">
-                    <input type="text" th:field="*{nombre}" class="form-control" id="nombre" name="nombre" placeholder="Titulo de la oferta de trabajo" required="required">
+                    <input type="text" th:field="*{nombre}" class="formE-control" id="nombre" name="nombre" placeholder="Titulo de la oferta de trabajo" required="required">
                   </div>
                 </div>
                 <div class="col-md-9"> 
                   <div class="form-group">
                     <label for="descripcion">Descripción</label>
-                    <input type="text" th:field="*{descripcion}" class="form-control" id="descripcion" name="descripcion" placeholder="Breve descripcion de la oferta de trabajo" required="required">
+                    <input type="text" th:field="*{descripcion}" class="formE-control" id="descripcion" name="descripcion" placeholder="Breve descripcion de la oferta de trabajo" required="required">
                   </div> 
                 </div>    
               </div>    
@@ -56,7 +57,7 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="categoria">Categoría</label>
-                    <select class="form-control" name="categoria" th:field="*{categoria.id}" id="categoria">
+                    <select class="formE-control" name="categoria" th:field="*{categoria.id}" id="categoria">
                       <option th:each="categoria : ${categorias}" 
 								th:value="${categoria.id}"
 								th:text="${categoria.nombre}">
@@ -68,7 +69,7 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="estatus">Estatus</label>
-                    <select class="form-control" name="estatus" th:field="*{estatus}" id="estatus">
+                    <select class="formE-control" name="estatus" th:field="*{estatus}" id="estatus">
                       <option value="Creada">Creada</option>
                       <option value="Aprobada">Aprobada</option>
                       <option value="Eliminada">Eliminada</option>                      
@@ -78,7 +79,7 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="fecha">Fecha de Publicación</label>
-                    <input type="text" class="form-control" name="fecha" th:field="*{fecha}" id="fecha" placeholder="Fecha de publicacion" required="required">
+                    <input type="text" class="formE-control" name="fecha" th:field="*{fecha}" id="fecha" placeholder="Fecha de publicacion" required="required">
                   </div>  
                 </div>
                 <div class="col-md-3"> 
@@ -97,7 +98,7 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="salario">Salario Ofrecido (Aprox)</label>
-                    <input type="text" class="form-control" name="salario" th:field="*{salario}" id="salario" placeholder="Salario aproximado." required="required">
+                    <input type="text" class="formE-control" name="salario" th:field="*{salario}" id="salario" placeholder="Salario aproximado." required="required">
                   </div>
                 </div>                
                 <div class="col-md-3"> 
@@ -112,7 +113,7 @@
                 <div class="col-md-9"> 
                   <div class="form-group">
                     <label for="detalles"><strong>Detalles</strong></label>          
-                    <textarea class="form-control" name="detalles" th:field="*{detalles}" id="detalles" rows="7"></textarea>
+                    <textarea class="formE-control" name="detalles" th:field="*{detalles}" id="detalles" rows="7"></textarea>
                   </div> 
                 </div> 
                 <div class="col-md-3">
@@ -120,7 +121,7 @@
                   <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen}) } " alt="Generic placeholder image" width="200" height="200">            
                 </div>
               </div> 
-              <button type="submit" class="btn btn-primary">Guardar</button>  
+              <button type="submit" class="btn btnPropio">Guardar</button>  
             </form>
           </div>
         </div>
@@ -128,7 +129,7 @@
 
     </main>
 
-    <footer th:insert="~{fragments/footer :: pie-pagina}" class="footer"></footer>
+    <footer th:insert="~{fragments/footer :: pie-pagina}" class="footerT"></footer>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

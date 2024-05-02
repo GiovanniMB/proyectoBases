@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+   <title>EmpleosApp | Formulario de registro</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+       <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/styles.css"  type="text/css">
+</head>
+<header th:insert="fragments/menu :: menu-principal"></header>
+<body class="bodyS">
+	<main>
+        <div class="section">
+            <div class="container">
+                <div class="row full-height justify-content-center">
+                    <div class="col-12 text-center align-self-center py-5">
+                        <div class="section pb-5 pt-5 pt-sm-2 text-center">
+                            <h6 class="mb-0 pb-3"><span>Empresa</span><span>Usuario</span></h6>
+                              <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
+                              <label for="reg-log"></label>
+                            <div class="card-3d-wrap mx-auto">
+                                <div class="card-3d-wrapper">
+                                    <div class="card-front">
+                                        <div class="center-wrap">
+                                            <div class="section text-center">
+                                                <h4 class="mb-4 pb-3">Registro Empresa</h4>
+                                                <form th:action="@{/signup/Empresa}" th:object="${empresa}" method="post">
+                                                	<div class="form-group">
+                                                    	<input type="text" class="form-style" th:field="*{razonSocial}" id="razonSocial" name="razonSocial" required="required" placeholder="businessName">
+                                                    	<i class="input-icon uil uil-user"></i>
+                                                	</div>
+                                                	<div class="form-group mt-2">
+                                                    	<input type="text" class="form-style" th:field="*{rfc}" id="rfc" name="rfc" required="required" placeholder="RFC">
+                                                    	<i class="input-icon uil uil-meeting-board"></i>
+                                                	</div>
+                                                	<button type="submit" title="Registrame" class="btn mt-4">Registrarse</button>
+                                                </form>
+                                            </div>
+                                          </div>
+                                      </div>
+                                    <div class="card-back">
+                                        <div class="center-wrap">
+                                            <div class="section text-center">
+                                                <h4 class="mb-3 pb-3">Registro Usuario</h4>
+                                                <form th:action="@{/signup/Usuario}" th:object="${usuario}" method="post">
+                                                    <div class="form-group">
+                                                        <input class=" form-style" th:field="*{nombre}" id="nombre" name="nombre" required="required" placeholder="FullName">
+                                                        <i class="input-icon uil uil-user"></i>
+                                                    </div>	
+                                                    <div class="form-group mt-2">
+                                                        <input type="text" class="form-style" th:field="*{username}" id="username" name="username" required="required"
+                                                        placeholder="UserName">
+                                                        <i class="input-icon uil uil-github"></i>
+                                                    </div>	
+                                                    <div class="form-group mt-2">
+                                                        <input type="email" class="form-style " th:field="*{email}" id="email" name="email" placeholder="email" required="required">
+                                                        <i class="input-icon uil uil-at"></i>
+                                                    </div>
+                                                    <div class="form-group mt-2">
+                                                        <input type="password" class="form-style" th:field="*{password}" id="password" name="password" required="required"
+                                                        placeholder="Password">
+                                                        <i class="input-icon uil uil-lock-alt"></i>
+                                                    </div>
+                                                   <div class="switch form-group mt-2">
+													    <p>Usuario</p>
+													    <input class="input-type" type="checkbox" id="toggle" name="toggle">
+													    <label for="toggle">
+													        <i class="bulb">
+													            <span class="bulb-center"></span>
+													            <span class="filament-1"></span>
+													            <span class="filament-2"></span>
+													            <span class="reflections">
+													                <span></span>
+													            </span>
+													            <span class="sparks">
+													                <i class="spark1"></i>
+													                <i class="spark2"></i>
+													                <i class="spark3"></i>
+													                <i class="spark4"></i>
+													            </span>
+													        </i>
+													    </label>
+													    <p>RH</p>
+													</div>
+													<div class="form-group mt-2" id="companyCodeContainer" style="display: none;">
+												        <input type="text" class="form-style" th:field="*{empresa.companyCode}" id="companyCode" name="companyCode"
+														       placeholder="Company code">
+												        <i class="input-icon uil uil-lock-alt"></i>
+												    </div>
+                                                    <button type="submit" title="Quiero registrarme." class="btn mt-4">Registrarse</button>
+                                                  </div>
+                                                </form>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+            </div>
+        </div>
+    </main>
+    <footer th:insert="fragments/footer :: pie-pagina" class="footerS"></footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> 
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>  
+    <script>
+        // Obtener referencia al select y al contenedor del campo "Company code"
+        var select = document.getElementById('toggle');
+        var companyCodeContainer = document.getElementById('companyCodeContainer');
+
+        // Agregar un evento change al select
+        select.addEventListener('change', function() {
+            // Mostrar u ocultar el contenedor del campo "Company code" según si el select está seleccionado o no
+            companyCodeContainer.style.display = this.checked ? 'block' : 'none';
+        });
+    </script>   
+</body>
+</html>

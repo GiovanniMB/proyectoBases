@@ -13,9 +13,10 @@
     <!-- Custom styles for this template -->
     <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
     <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link rel="stylesheet" href="/css/stylesP.css">
   </head>
 
-  <body>
+  <body class="pers">
 
     <header th:insert="~{fragments/menu :: menu-principal}"></header>
 
@@ -23,9 +24,9 @@
       <hr>
       <div class="container"> 
 
-        <div class="card">
+        <div class="cardA">
           <h4 class="card-header">Acerca de <strong>Empleos App</strong> </h4>              
-          <div class="card-body">
+          <div class="cardA-body">
             
 				<p>Aplicación para Publicar Ofertas de Trabajo desarrollada con Spring Boot.</p1>
 
@@ -35,7 +36,7 @@
 
     </main>
 
-    <footer th:insert="~{fragments/footer :: pie-pagina}" class="footer"></footer>
+    <footer th:insert="~{fragments/footer :: pie-pagina}" class="footerT"></footer>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

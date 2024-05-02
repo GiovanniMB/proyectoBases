@@ -1,0 +1,279 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>EmpleosApp | Completar Datos de Empresa</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+
+    <header th:insert="~{fragments/menu :: menu-principal}"></header>
+
+    <main role="main">     
+      <hr>
+      <div class="container"> 
+
+        <div class="card">
+          <h4 class="card-header"><strong>Datos de la Empresa</strong></h4>              
+          <div class="card-body">
+            <form th:action="@{/empresas/save}" th:object="${empresa}" method="post" enctype="multipart/form-data">
+            
+	           	<div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>
+						Por favor corrija los siguientes errores:
+						<ul>
+						    <li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
+						</ul>
+					</div>            
+                          
+              <div class="row">
+                <div class="col-md-4"> 
+                  <div class="form-group">
+                    <label for="companyCode">Código de la Empresa</label>
+                    <input type="text" th:field="*{companyCode}" class="form-control" id="companyCode" name="companyCode" placeholder="Código de la empresa" required="required">
+                  </div>
+                </div>
+                <div class="col-md-8"> 
+                  <div class="form-group">
+                    <label for="historia">Historia</label>
+                    <textarea class="form-control" name="historia" th:field="*{hisEmpresa.historia}" id="historia" rows="3" placeholder="Historia de la empresa" required="required"></textarea>
+                  </div> 
+                </div>    
+              </div>    
+              <div class="row">
+                <div class="col-md-4"> 
+                  <div class="form-group">
+                    <label for="razonSocial">Razón Social</label>
+                    <input type="text" th:field="*{razonSocial}" class="form-control" id="razonSocial" name="razonSocial" placeholder="Razón social de la empresa" required="required">
+                  </div> 
+                </div>  
+                <div class="col-md-4"> 
+                  <div class="form-group">
+                    <label for="rfc">RFC</label>
+                    <input type="text" th:field="*{rfc}" class="form-control" id="rfc" name="rfc" placeholder="RFC de la empresa" required="required">
+                  </div>
+                </div>  
+                <div class="col-md-4"> 
+                  <div class="form-group">
+                    <label for="calle">Calle</label>
+                    <input type="text" th:field="*{direccion.calle}" class="form-control" id="calle" name="calle" placeholder="Calle de la dirección" required="required">
+                  </div> 
+                </div>
+              </div>
+              <div class="row" th:with="estadoSeleccionado=${estado}">
+              			<div class="col-md-4"> 
+		                    <div class="form-group">
+			                    <label for="numero">numero</label>
+			                    <input type="text" th:field="*{direccion.numero}" class="form-control" id="numero" name="numero" placeholder="Numero de la dirección" required="required">
+		                 	</div>
+		               </div>
+               
+             
+					    <div class="col-md-4"> 
+							    <div class="form-group">
+							        <label for="estado">Estado</label>
+							        <select th:field="*{direccion.colonia.municipio.estado}"class="form-control" name="estado" id="estado"required="required">
+							            <option value="">Selecciona un estado</option>
+							            <!-- Iterar sobre la lista de estados -->
+							            <option th:each="estado : ${estados}"
+							                    th:value="${estado.id}"
+							                    th:text="${estado.nombre}">
+							            </option>
+							        </select>
+							    </div> 
+							</div>
+					    <div class="col-md-4" > 
+					        <div class="form-group">
+					            <label for="municipio">Municipio</label>
+					            <select th:field="*{direccion.colonia.municipio}"class="form-control" name="municipio" id="municipio" required="required">
+					                <option value="">Selecciona un municipio</option>
+					                <!-- Utilizar estadoSeleccionado aquí -->
+					                <option th:fragment="municipios"
+					                		th:each="municipio : ${municipios}"
+					                       	th:value="${municipio.id}"
+					                        th:text="${municipio.nombre}">
+					                </option>
+					            </select>
+					        </div> 
+					    </div>
+					    
+					</div>   
+              <div class="row">
+              <div class="col-md-4"> 
+                  <div class="form-group">
+                    <label for="colonia">Colonia</label>
+                 	<select th:field="*{direccion.colonia}"class="form-control" name="colonia" id="colonia" required="required">
+					                <option value="">Selecciona una colonia</option>
+					                <!-- Utilizar estadoSeleccionado aquí -->
+					                <option th:fragment="colonias"
+					                		th:each="colonia : ${colonias}"
+					                       	th:value="${colonia.id}"
+					                        th:text="${colonia.nombre}">
+					                </option>
+					            </select>
+                  </div>
+                </div>
+
+                <div class="col-md-4"> 
+                  <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" th:field="*{telefono}" class="form-control" id="telefono" name="telefono" placeholder="Teléfono de la empresa" required="required">
+                  </div>
+                </div>
+                <div class="col-md-4"> 
+                  <div class="form-group">
+                    <label for="archivoImagen">Imagen</label>
+                    <input type="file" class="form-control-file" name="archivoImagen" id="archivoImagen">
+                  </div>
+                </div>
+              </div> 
+              <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="socios">Socios</label>
+                                <input type="text" class="form-control" id="socioInput" placeholder="Nombre del socio">
+                                <button type="button" class="btn btn-primary" id="agregarSocio">Agregar Socio</button>
+                                <ul id="listaSocios">
+                                    <!-- Aquí se mostrarán los socios agregados dinámicamente -->
+                                </ul>
+                                 <input type="hidden" name="socios" id="socios" th:value="*{hisEmpresa.socios}" />
+                            </div>
+                        </div>  
+                        <div class="col-md-4"> 
+		                  <div class="form-group">
+		                    <label for="archivoLogo">Logo</label>
+		                    <input type="file" class="form-control-file" name="archivoLogo" id="archivoLogo">
+		                  </div>
+		                </div>
+		                <div class="col-md-3"> 
+		                  <div class="form-group">
+		                    <label for="fechaCreacion">Fecha de Creacion</label>
+		                    <input type="text" class="form-control" name="fechaCreacion" th:field="*{hisEmpresa.fechaCreacion}" id="fechaCreacion" placeholder="Fecha de creacion" required="required">
+		                  </div>  
+		                </div>
+               </div>
+              <hr>
+              <div class="col-md-9"> 
+                  <div class="form-group">
+                    <label for="descripcion">Descripción</label>
+                    <input type="text" th:field="*{descripcion}" class="form-control" id="descripcion" placeholder="Breve descripcion de la oferta de trabajo">
+                  </div> 
+                </div>
+               
+              <button type="submit" class="btn btn-primary">Guardar</button>  
+            </form>
+          </div>
+        </div>
+      </div> <!-- /container -->
+
+    </main>
+
+    <footer th:insert="~{fragments/footer :: pie-pagina}" class="footer"></footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script> 
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script th:src="@{/tinymce/tinymce.min.js}"></script>
+    <script>
+    $(document).ready(function() {
+        // Evento de cambio en el select de estado
+        $("#estado").change(function() {
+            // Obtener el valor seleccionado del estado
+            var idEstado = $(this).val();
+            
+            // Mostrar el ID del estado seleccionado en la consola del navegador
+            console.log("ID del estado seleccionado:", idEstado);
+
+            // Hacer la solicitud AJAX para obtener municipios
+            $.ajax({
+                type: 'GET',
+                url: '/empresas/estado', // URL del controlador en Spring Boot
+                data: { estadoId: idEstado },
+                success: function(data) {
+                    // Actualizar el select de municipios con el fragmento devuelto por el controlador
+                    $('#municipio').html(data);
+                },
+                error: function(xhr, status, error) {
+                    // Manejar errores de la solicitud
+                    console.error('Error al realizar la solicitud:', status, error);
+                }
+            });
+        });
+    });
+</script>
+
+    <script>
+    $(document).ready(function() {
+        // Evento de cambio en el select de estado
+        $("#municipio").change(function() {
+            // Obtener el valor seleccionado del estado
+            var idMunicipio = $(this).val();
+            
+            // Mostrar el ID del estado seleccionado en la consola del navegador
+            console.log("ID del municipio seleccionado:", idMunicipio);
+
+            // Hacer la solicitud AJAX para obtener municipios
+            $.ajax({
+                type: 'GET',
+                url: '/empresas/municipio', // URL del controlador en Spring Boot
+                data: { municipioId: idMunicipio},
+                success: function(data) {
+                    // Actualizar el select de municipios con el fragmento devuelto por el controlador
+                    $('#colonia').html(data);
+                },
+                error: function(xhr, status, error) {
+                    // Manejar errores de la solicitud
+                    console.error('Error al realizar la solicitud:', status, error);
+                }
+            });
+        });
+    });
+</script>
+
+    <script>
+    $(function () {
+        $("#fechaCreacion").datepicker({dateFormat: 'dd-mm-yy'});
+      }
+    );
+    
+    tinymce.init({
+        selector: '#descripcion',
+        plugins: "textcolor, table lists code",
+        toolbar: " undo redo | bold italic | alignleft aligncenter alignright alignjustify \n\
+                  | bullist numlist outdent indent | forecolor backcolor table code"
+    });
+      $(document).ready(function(){
+          $("#agregarSocio").click(function(){
+              var nuevoSocio = $("#socioInput").val();
+              if(nuevoSocio.trim() !== '') {
+                  $("#listaSocios").append("<li>" + nuevoSocio + "</li>");
+                  $("#socioInput").val('');
+                  actualizarListaSocios();
+              }
+          });
+      });
+
+      function actualizarListaSocios() {
+          var listaSocios = [];
+          $("#listaSocios li").each(function(){
+              listaSocios.push($(this).text());
+          });
+          $("#socios").val(JSON.stringify(listaSocios)); // Convertir a JSON
+      }
+    </script>
+  </body>
+</html>
