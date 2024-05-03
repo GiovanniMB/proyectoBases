@@ -11,4 +11,5 @@ public interface IEmpresasService
 	void eliminar(String companyCode);
 	List<Empresa> buscarTodos();
 	Empresa buscarPorCompanyCode(String companyCode);
+	List<Empresa> buscarEmpresasnotnull();
 }

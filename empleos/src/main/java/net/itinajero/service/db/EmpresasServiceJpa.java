@@ -36,5 +36,10 @@ public class EmpresasServiceJpa implements IEmpresasService
 	{
 		return empresasRepo.findBycompanyCode(companyCode);
 	}
+
+	public List<Empresa> buscarEmpresasnotnull() 
+	{
+		return empresasRepo.findByHisEmpresaIsNotNull();
+	}
 	
 }

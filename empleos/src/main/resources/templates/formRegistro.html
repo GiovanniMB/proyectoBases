@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/styles.css"  type="text/css">
 <link rel="stylesheet" href="/css/stylesP.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <header th:insert="fragments/menu :: menu-principal"></header>
 <body class="pers">
@@ -58,6 +59,8 @@
                                                         <input class=" form-style" th:field="*{nombre}" id="nombre" name="nombre" required="required" placeholder="FullName">
                                                         <i class="input-icon uil uil-user"></i>
                                                     </div>	
+                                                    <div id="mensaje" class="form-group mt-2 bg-danger text-white" role="alert" style="display: none;"></div>
+
                                                     <div class="form-group mt-2">
                                                         <input type="text" class="form-style" th:field="*{username}" id="username" name="username" required="required"
                                                         placeholder="UserName">
@@ -112,8 +115,6 @@
         </div>
     </main>
     <footer th:insert="fragments/footer :: pie-pagina" class="footerS"></footer>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> 
-    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>  
     <script>
         // Obtener referencia al select y al contenedor del campo "Company code"
         var select = document.getElementById('toggle');
@@ -124,6 +125,35 @@
             // Mostrar u ocultar el contenedor del campo "Company code" según si el select está seleccionado o no
             companyCodeContainer.style.display = this.checked ? 'block' : 'none';
         });
-    </script>   
+    </script> 
+   <script >
+   $(document).ready(function() {
+	    $("#username").change(function() {
+	        var usernameValue = $(this).val();
+	        console.log(usernameValue);
+	        $.ajax({
+	            type: 'GET',
+	            url: '/userExist',
+	            data: { name: usernameValue },
+	            success: function(data) {
+	                console.log("Respuesta:", data);
+	                if (data.trim() !== "") {
+	                    // Actualizar el contenido del div con el mensaje recibido
+	                    $('#mensaje').text(data);
+	                    // Mostrar el div
+	                    $('#mensaje').show();
+	                } else {
+	                    // Si la respuesta está vacía, ocultar el div
+	                    $('#mensaje').hide();
+	                }
+	            },
+	            error: function(xhr, status, error) {
+	                console.error('Error al realizar la solicitud:', status, error);
+	            }
+	        });
+	    });
+	});
+
+</script>
 </body>
 </html>

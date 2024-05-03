@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -85,6 +87,7 @@ public class HomeController {
 		
 		return "redirect:/";
 	}
+	
 	
 	/**
 	 * Método que muestra el formulario para que se registren nuevos usuarios.
@@ -190,23 +193,40 @@ public class HomeController {
 	public String mostrarJuegoOc() {			
 		return "juegoOc";
 	}
+	@GetMapping("/userExist")
+	public ResponseEntity<String> verificarExistente(@RequestParam("name") String name, Model model) {
+	    System.out.println("Nombre de usuario recibido: " + name);
+	    
+	    Usuario usuario = serviceUsuarios.buscarPorUsername(name);
+	    if (usuario != null) {
+	        System.out.println("Usuario encontrado: " + usuario.getUsername());
+	        return ResponseEntity.ok("Username no disponible");
+	    } else {
+	    	return ResponseEntity.ok(""); // Limpiar el atributo si el usuario no existe
+	    }
+	    
+	}
+
 	
 	/**
-	 * Metodo que muestra la vista de la pagina de Acerca
+	 * Metodo que muestra las historia de las empresas
 	 * @return
 	 */
 	@GetMapping("/historiaEmpresa")
-	public String mostrarhistoriaEmpresa(Model model) {
-		List<Empresa> lista = serviceEmpresas.buscarTodos();
-		model.addAttribute("empresas", lista);
-		for (Empresa empresa : lista) {
-	        if (empresa.getHisEmpresa() == null) {
-	            return "histEmFall"; // Si alguna historia es null, retorna "home" directamente
+	public String mostrarhistoriaEmpresa(Model model) 
+	{
+		List<Empresa> lista = serviceEmpresas.buscarEmpresasnotnull();
+		
+	        if (lista.isEmpty()) 
+	        {
+	            return "histEmFall"; // Si esta vacia la lista, retorna "home" directamente
 	        }
-	    }
-
-	    // Si no se encontró ninguna historia null, se continúa y se muestra "historiaEmpresa"
-	    return "historiaEmpresa";
+	        else
+	        {
+	        	model.addAttribute("empresas", lista);
+	        	// Si contiene objetos la lista, se continúa y se muestra "historiaEmpresa"
+	    	    return "historiaEmpresa";
+	        }
 	}
 	
 	/**
