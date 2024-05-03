@@ -109,7 +109,7 @@ mainH {
   &:nth-child(3) { left: 50%; }
   &:nth-child(4) { left: calc(50% + 220px); }
   &:nth-child(5) { left: calc(50% + 440px); }
-  &:nth-child(6) { left: calc(50% + 660px); opacity: 0; }
+  &:nth-child(n+6) { left: calc(50% + 660px); opacity: 0; }
 }
 
 .contentH {
@@ -221,6 +221,7 @@ mainH {
 
 /**Color propio **/
 	body.persOs{
+	padding-top: 2.5rem;
 	font-family: 'Poppins', sans-serif;
 	font-weight: 300;
 	line-height: 1.7;
@@ -230,6 +231,7 @@ mainH {
 /** Jumboytron pers**/
 /* Estilos para el jumbotron */
 .jumbotronPrOs {
+	margin-top: 20px;
     background:linear-gradient(#343a40,#3d454d);
     padding:unset;
     margin:auto;
@@ -246,6 +248,7 @@ mainH {
 .jumbotronPrOs {
     font-size: 18px;
     margin-bottom: 20px;
+	margin-top: 20px;
 }
 
 .footerTOs .P {
@@ -639,6 +642,7 @@ Boton propio con animacion
 
 /**Color propio **/
 	body.pers{
+	padding: 2.5rem;
 	font-family: 'Poppins', sans-serif;
 	font-weight: 300;
 	line-height: 1.7;
@@ -673,6 +677,7 @@ body.pers.i{
 .jumbotronPr {
     font-size: 18px;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .footerT .P {
@@ -988,12 +993,12 @@ body.pers.i{
 
 	
 .theme-switch {
-  --toggle-size: 30px;
-  --container-width: 5.625em;
-  --container-height: 2.5em;
+  --toggle-size: 15px;
+  --container-width: 3.5em;
+  --container-height: 1.5em;
   --container-light-bg: #3D7EAE;
-  --circle-container-diameter: 3.375em;
-  --sun-moon-diameter: 2.125em;
+  --circle-container-diameter: 2em;
+  --sun-moon-diameter: 1em;
   --sun-bg: #ECCA2F;
   --moon-bg: #C4C9D1;
   --spot-color: #959DB1;
@@ -1004,28 +1009,21 @@ body.pers.i{
 .theme-switch *,
 .theme-switch *::before,
 .theme-switch *::after {
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-size: 30px;
+  font-size: 15px;
 }
 
 .containerM {
-  width: 5.625em;
+  width: 3.5em;
   height: var(--container-height);
   background-color: var(--container-light-bg);
-  border-radius: 6.25em;
+  border-radius: 4em;
   overflow: hidden;
   cursor: pointer;
-  -webkit-box-shadow: 0em -0.062em 0.062em rgba(0, 0, 0, 0.25), 0em 0.062em 0.125em rgba(255, 255, 255, 0.94);
   box-shadow: 0em -0.062em 0.062em rgba(0, 0, 0, 0.25), 0em 0.062em 0.125em rgba(255, 255, 255, 0.94);
-  -webkit-transition: .5s cubic-bezier(0, -0.02, 0.4, 1.25);
-  ;
-  -o-transition: .5s cubic-bezier(0, -0.02, 0.4, 1.25);
-  ;
   transition: .5s cubic-bezier(0, -0.02, 0.4, 1.25);
-  ;
   position: relative;
 }
 
@@ -1034,7 +1032,6 @@ body.pers.i{
   position: absolute;
   z-index: 1;
   inset: 0;
-  -webkit-box-shadow: 0em 0.05em 0.187em rgba(0, 0, 0, 0.25) inset, 0em 0.05em 0.187em rgba(0, 0, 0, 0.25) inset;
   box-shadow: 0em 0.05em 0.187em rgba(0, 0, 0, 0.25) inset, 0em 0.05em 0.187em rgba(0, 0, 0, 0.25) inset;
 }
 
@@ -1043,20 +1040,15 @@ body.pers.i{
 }
 
 .circleM-containerM {
-  width: 3.375em;
-  height: 3.375em;
+  width: 2em;
+  height: 2em;
   background-color: rgba(255, 255, 255, 0.1);
   position: absolute;
   left: var(--circle-container-offset);
   top: var(--circle-container-offset);
-  border-radius: 6.25em;
-  -webkit-box-shadow: inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), 0 0 0 0.625em rgba(255, 255, 255, 0.1), 0 0 0 1.25em rgba(255, 255, 255, 0.1);
-  box-shadow: inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), 0 0 0 0.625em rgba(255, 255, 255, 0.1), 0 0 0 1.25em rgba(255, 255, 255, 0.1);
-  display: -webkit-box;
-  display: -ms-flexbox;
+  border-radius: 4em;
+  box-shadow: inset 0 0 0 2em rgba(255, 255, 255, 0.1), inset 0 0 0 2em rgba(255, 255, 255, 0.1), 0 0 0 0.4em rgba(255, 255, 255, 0.1), 0 0 0 0.8em rgba(255, 255, 255, 0.1);
   display: flex;
-  -webkit-transition: .3s cubic-bezier(0, -0.02, 0.35, 1.17);
-  -o-transition: .3s cubic-bezier(0, -0.02, 0.35, 1.17);
   transition: .3s cubic-bezier(0, -0.02, 0.35, 1.17);
   pointer-events: none;
 }
@@ -1068,67 +1060,49 @@ body.pers.i{
   width: var(--sun-moon-diameter);
   height: var(--sun-moon-diameter);
   margin: auto;
-  border-radius: 6.25em;
+  border-radius: 4em;
   background-color: var(--sun-bg);
-  -webkit-box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #a1872a inset;
   box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #a1872a inset;
-  -webkit-filter: drop-shadow(0.062em 0.125em 0.125em rgba(0, 0, 0, 0.25)) drop-shadow(0em 0.062em 0.125em rgba(0, 0, 0, 0.25));
   filter: drop-shadow(0.062em 0.125em 0.125em rgba(0, 0, 0, 0.25)) drop-shadow(0em 0.062em 0.125em rgba(0, 0, 0, 0.25));
   overflow: hidden;
-  -webkit-transition: .5s cubic-bezier(0, -0.02, 0.4, 1.25);
-  ;
-  -o-transition: .5s cubic-bezier(0, -0.02, 0.4, 1.25);
-  ;
   transition: .5s cubic-bezier(0, -0.02, 0.4, 1.25);
-  ;
 }
 
 .moon {
-  -webkit-transform: translateX(100%);
-  -ms-transform: translateX(100%);
   transform: translateX(100%);
   width: 100%;
   height: 100%;
   background-color: var(--moon-bg);
   border-radius: inherit;
-  -webkit-box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #969696 inset;
   box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #969696 inset;
-  -webkit-transition: .5s cubic-bezier(0, -0.02, 0.4, 1.25);
-  ;
-  -o-transition: .5s cubic-bezier(0, -0.02, 0.4, 1.25);
-  ;
   transition: .5s cubic-bezier(0, -0.02, 0.4, 1.25);
-  ;
   position: relative;
 }
 
 .spotM {
   position: absolute;
-  top: 0.75em;
-  left: 0.312em;
-  width: 0.75em;
-  height: 0.75em;
-  border-radius: 6.25em;
+  top: 0.25em;
+  left: 0.125em;
+  width: 0.25em;
+  height: 0.25em;
+  border-radius: 4em;
   background-color: var(--spot-color);
-  -webkit-box-shadow: 0em 0.0312em 0.062em rgba(0, 0, 0, 0.25) inset;
   box-shadow: 0em 0.0312em 0.062em rgba(0, 0, 0, 0.25) inset;
 }
 
 .spotM:nth-of-type(2) {
-  width: 0.375em;
-  height: 0.375em;
-  top: 0.937em;
-  left: 1.375em;
+  width: 0.125em;
+  height: 0.125em;
+  top: 0.5em;
+  left: 0.4375em;
 }
 
 .spotM:nth-last-of-type(3) {
-  width: 0.25em;
-  height: 0.25em;
-  top: 0.312em;
-  left: 0.812em;
+  width: 0.0625em;
+  height: 0.0625em;
+  top: 0.125em;
+  left: 0.3125em;
 }
-
-
 
 .checkboxM:checked+.containerM {
   background-color: #1D1F2C;
@@ -1139,16 +1113,14 @@ body.pers.i{
 }
 
 .checkboxM:checked+.containerM .circleM-containerM:hover {
-  left: calc(100% - var(--circle-container-offset) - var(--circle-container-diameter) - 0.187em)
+  left: calc(100% - var(--circle-container-offset) - var(--circle-container-diameter) - 0.0625em)
 }
 
 .circleM-containerM:hover {
-  left: calc(var(--circle-container-offset) + 0.187em);
+  left: calc(var(--circle-container-offset) + 0.0625em);
 }
 
 .checkboxM:checked+.containerM .moon {
-  -webkit-transform: translate(0);
-  -ms-transform: translate(0);
   transform: translate(0);
 }
 
