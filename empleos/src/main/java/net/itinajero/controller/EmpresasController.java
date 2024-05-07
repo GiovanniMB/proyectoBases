@@ -180,8 +180,11 @@ public class EmpresasController
 			serviceSolicitudes.eliminarPorIdVacante(vacante.getId());
 		}
 		serviceVacantes.eliminarPorCompanyCode(companyCode);
-		serviceAgenda.eliminarPorIdRH(usuario.getId());
-		serviceUsuarios.eliminar(usuario.getId());
+		if(usuario!=null)
+		{
+			serviceAgenda.eliminarPorIdRH(usuario.getId());
+			serviceUsuarios.eliminar(usuario.getId());
+		}
 		serviceEmpresas.eliminar(companyCode);
 		attributes.addFlashAttribute("msg", "La empresa fue eliminada!.");
 		return "redirect:/empresas/index";
