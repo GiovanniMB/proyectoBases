@@ -191,10 +191,11 @@ public class HomeController {
 	    System.out.println("Nombre de usuario recibido: " + name);
 	    
 	    Usuario usuario = serviceUsuarios.buscarPorUsername(name);
-	    if (usuario != null) {
-	        System.out.println("Usuario encontrado: " + usuario.getUsername());
+	    if (usuario != null) 
+	    {
 	        return ResponseEntity.ok("Username no disponible");
-	    } else {
+	    } else 
+	    {
 	    	return ResponseEntity.ok(""); // Limpiar el atributo si el usuario no existe
 	    }
 	    
