@@ -121,8 +121,9 @@ mainH {
   font: 400 0.85rem helvetica,sans-serif;
   color: white;
   text-shadow: 0 3px 8px rgba(0,0,0,0.5);
-  opacity: 0;
+  opacity: 10;
   display: none;
+  backdrop-filter: blur(10px);
 
   & .titleH {
     font-family: 'arial-black';
@@ -1140,4 +1141,6 @@ body.pers.i{
   }
 }
 
-
+.row{
+	margin-top: 10px;
+}

@@ -7,6 +7,7 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -116,52 +119,42 @@ public class HomeController {
 	}
 	@PostMapping("/signup/Usuario")
 	public String guardarRegistro(Usuario usuario, RedirectAttributes attributes) {
-		// Recuperamos el password en texto plano
-		String pwdPlano = usuario.getPassword();
-		// Encriptamos el pwd BCryptPasswordEncoder
-		String pwdEncriptado = passwordEncoder.encode(pwdPlano); 
-		// Hacemos un set al atributo password (ya viene encriptado)
-		usuario.setPassword(pwdEncriptado);	
-		usuario.setEstatus(1); // Activado por defecto
-		usuario.setFechaRegistro(new Date()); // Fecha de Registro, la fecha actual del servidor
-		
-		// Creamos el Perfil que le asignaremos al usuario nuevo
-		Perfil perfil = new Perfil();
-		if(usuario.getEmpresa().getCompanyCode()==null)
-		{
-			perfil.setId(3); // Perfil USUARIO
-			usuario.agregar(perfil);
-			usuario.setEmpresa(null);
-			serviceUsuarios.guardar(usuario);
-			
-			attributes.addFlashAttribute("msg", "Has sido registrado. ¡Ahora puedes ingresar al sistema!");
-		}
-		else
-		{
-			Empresa empresa=serviceEmpresas.buscarPorCompanyCode(usuario.getEmpresa().getCompanyCode());
-			if(Objects.nonNull(empresa))
-			{
-				perfil.setId(4); // Perfil USUARIO
-				usuario.agregar(perfil);
-				usuario.setEmpresa(empresa);
-				serviceUsuarios.guardar(usuario);
-				attributes.addFlashAttribute("msg", "Has sido registrado. ¡Ahora puedes ingresar al sistema!");
-			}
-			else
-			{
-				attributes.addFlashAttribute("msg", "No se ah encontrado en el sistema el Company Code asociado!");
-			}
-		}
-		/**
-		 * Guardamos el usuario en la base de datos. El Perfil se guarda automaticamente
-		 
-		serviceUsuarios.guardar(usuario);
-				
-		attributes.addFlashAttribute("msg", "Has sido registrado. ¡Ahora puedes ingresar al sistema!");
-		*/
-		return "redirect:/";
+	    // Recuperamos el password en texto plano
+	    String pwdPlano = usuario.getPassword();
+	    // Encriptamos el pwd BCryptPasswordEncoder
+	    String pwdEncriptado = passwordEncoder.encode(pwdPlano);
+	    // Hacemos un set al atributo password (ya viene encriptado)
+	    usuario.setPassword(pwdEncriptado);
+	    usuario.setEstatus(1); // Activado por defecto
+	    usuario.setFechaRegistro(new Date()); // Fecha de Registro, la fecha actual del servidor
+
+	    // Creamos el Perfil que le asignaremos al usuario nuevo
+	    Perfil perfil = new Perfil();
+	    if (usuario.getEmpresa().getCompanyCode() == null) {
+	        perfil.setId(3); // Perfil USUARIO
+	        usuario.agregar(perfil);
+	        usuario.setEmpresa(null);
+	    } else {
+	        Empresa empresa = serviceEmpresas.buscarPorCompanyCode(usuario.getEmpresa().getCompanyCode());
+	        if (Objects.nonNull(empresa)) {
+	            perfil.setId(4); // Perfil USUARIO
+	            usuario.agregar(perfil);
+	            usuario.setEmpresa(empresa);
+	        } else {
+	            attributes.addFlashAttribute("msg", "No se ha encontrado en el sistema el Company Code asociado!");
+	            return "redirect:/";
+	        }
+	    }
+
+	    try {
+	        serviceUsuarios.guardar(usuario);
+	        attributes.addFlashAttribute("msg", "Has sido registrado. ¡Ahora puedes ingresar al sistema!");
+	    } catch (DataIntegrityViolationException e) {
+	        attributes.addFlashAttribute("msg1", "Ya existe un usuario con ese nombre de usuario. Por favor, elige otro username.");
+	    }
+
+	    return "redirect:/";
 	}
-	
 	
 	/**
 	 * Método para realizar búsquedas desde el formulario de búsqueda del HomePage
