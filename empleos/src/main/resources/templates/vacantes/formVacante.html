@@ -43,7 +43,7 @@
                     <label for="nombre">Nombre</label>
                     <input type="hidden" th:field="*{id}">
                     <input type="hidden" th:field="*{imagen}">
-                    <input type="text" th:field="*{nombre}" class="formE-control" id="nombre" name="nombre" placeholder="Titulo de la oferta de trabajo" required="required">
+                    <input type="text" th:field="*{nombre}" maxlength="100" class="formE-control" id="nombre" name="nombre" placeholder="Titulo de la oferta de trabajo" required="required">
                   </div>
                 </div>
                 <div class="col-md-9"> 

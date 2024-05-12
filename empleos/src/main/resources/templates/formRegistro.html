@@ -38,11 +38,11 @@
                                                 <h4 class="mb-4 pb-3">Registro Empresa</h4>
                                                 <form th:action="@{/signup/Empresa}" th:object="${empresa}" method="post">
                                                 	<div class="form-group">
-                                                    	<input type="text" class="form-style" th:field="*{razonSocial}" id="razonSocial" name="razonSocial" required="required" placeholder="businessName">
+                                                    	<input type="text" class="form-style" th:field="*{razonSocial}" maxlength="50" id="razonSocial" name="razonSocial" required="required" placeholder="businessName">
                                                     	<i class="input-icon uil uil-user"></i>
                                                 	</div>
                                                 	<div class="form-group mt-2">
-                                                    	<input type="text" class="form-style" th:field="*{rfc}" id="rfc" name="rfc" required="required" placeholder="RFC">
+                                                    	<input type="text" class="form-style" th:field="*{rfc}" maxlength="13" id="rfc" name="rfc" required="required" placeholder="RFC">
                                                     	<i class="input-icon uil uil-meeting-board"></i>
                                                 	</div>
                                                 	<button type="submit" title="Registrame" class="btn btnPropio mt-4">Registrarse</button>
@@ -56,22 +56,22 @@
                                                 <h4 class="mb-3 pb-3">Registro Usuario</h4>
                                                 <form th:action="@{/signup/Usuario}" th:object="${usuario}" method="post">
                                                     <div class="form-group">
-                                                        <input class=" form-style" th:field="*{nombre}" id="nombre" name="nombre" required="required" placeholder="FullName">
+                                                        <input class=" form-style" th:field="*{nombre}" maxlength="45" id="nombre" name="nombre" required="required" placeholder="FullName">
                                                         <i class="input-icon uil uil-user"></i>
                                                     </div>	
                                                     <div id="mensaje" class="form-group mt-2 bg-danger text-white" role="alert" style="display: none;"></div>
 
                                                     <div class="form-group mt-2">
-                                                        <input type="text" class="form-style" th:field="*{username}" id="username" name="username" required="required"
+                                                        <input type="text" class="form-style" th:field="*{username}" maxlength="45" id="username" name="username" required="required"
                                                         placeholder="UserName">
                                                         <i class="input-icon uil uil-github"></i>
                                                     </div>	
                                                     <div class="form-group mt-2">
-                                                        <input type="email" class="form-style " th:field="*{email}" id="email" name="email" placeholder="email" required="required">
+                                                        <input type="email" class="form-style " th:field="*{email}" maxlength="50" id="email" name="email" placeholder="email" required="required">
                                                         <i class="input-icon uil uil-at"></i>
                                                     </div>
                                                     <div class="form-group mt-2">
-                                                        <input type="password" class="form-style" th:field="*{password}" id="password" name="password" required="required"
+                                                        <input type="password" class="form-style" th:field="*{password}" maxlength="30" id="password" name="password" required="required"
                                                         placeholder="Password">
                                                         <i class="input-icon uil uil-lock-alt"></i>
                                                     </div>

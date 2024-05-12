@@ -42,7 +42,7 @@
                 <div class="col-md-4"> 
                   <div class="form-group">
                     <label for="companyCode">Código de la Empresa</label>
-                    <input type="text" th:field="*{companyCode}" class="formE-control" id="companyCode" name="companyCode" placeholder="Código de la empresa" required="required">
+                    <input type="text" th:field="*{companyCode}" class="formE-control" id="companyCode" name="companyCode" placeholder="Código de la empresa" required="required" readonly>
                   </div>
                 </div>
                 <div class="col-md-8"> 
@@ -56,19 +56,19 @@
                 <div class="col-md-4"> 
                   <div class="form-group">
                     <label for="razonSocial">Razón Social</label>
-                    <input type="text" th:field="*{razonSocial}" class="formE-control" id="razonSocial" name="razonSocial" placeholder="Razón social de la empresa" required="required">
+                    <input type="text" th:field="*{razonSocial}" class="formE-control" id="razonSocial" name="razonSocial" placeholder="Razón social de la empresa" required="required" readonly>
                   </div> 
                 </div>  
                 <div class="col-md-4"> 
                   <div class="form-group">
                     <label for="rfc">RFC</label>
-                    <input type="text" th:field="*{rfc}" class="formE-control" id="rfc" name="rfc" placeholder="RFC de la empresa" required="required">
+                    <input type="text" th:field="*{rfc}" class="formE-control" id="rfc" name="rfc" placeholder="RFC de la empresa" required="required" readonly>
                   </div>
                 </div>  
                 <div class="col-md-4"> 
                   <div class="form-group">
                     <label for="calle">Calle</label>
-                    <input type="text" th:field="*{direccion.calle}" class="formE-control" id="calle" name="calle" placeholder="Calle de la dirección" required="required">
+                    <input type="text" th:field="*{direccion.calle}" maxlength="30" class="formE-control" id="calle" name="calle" placeholder="Calle de la dirección" required="required">
                   </div> 
                 </div>
               </div>
@@ -76,7 +76,7 @@
               			<div class="col-md-4"> 
 		                    <div class="form-group">
 			                    <label for="numero">numero</label>
-			                    <input type="text" th:field="*{direccion.numero}" class="formE-control" id="numero" name="numero" placeholder="Numero de la dirección" required="required">
+			                    <input type="text" th:field="*{direccion.numero}" maxlength="5" class="formE-control" id="numero" name="numero" placeholder="Numero de la dirección" required="required">
 		                 	</div>
 		               </div>
                
@@ -129,7 +129,7 @@
                 <div class="col-md-4"> 
                   <div class="form-group">
                     <label for="telefono">Teléfono</label>
-                    <input type="text" th:field="*{telefono}" class="formE-control" id="telefono" name="telefono" placeholder="Teléfono de la empresa" required="required">
+                    <input type="text" th:field="*{telefono}" maxlength="13" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="formE-control" id="telefono" name="telefono" placeholder="Teléfono de la empresa" required="required">
                   </div>
                 </div>
                 <div class="col-md-4"> 
@@ -143,7 +143,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="socios">Socios</label>
-                                <input type="text" class="formE-control" id="socioInput" placeholder="Nombre del socio">
+                                <input type="text" maxlength="50" class="formE-control" id="socioInput" placeholder="Nombre del socio">
                                 <button type="button" class="btn btnPropio" id="agregarSocio">Agregar Socio</button>
                                 <ul id="listaSocios">
                                     <!-- Aquí se mostrarán los socios agregados dinámicamente -->
@@ -168,7 +168,7 @@
               <div class="col-md-9"> 
                   <div class="form-group">
                     <label for="descripcion">Descripción</label>
-                    <input type="text" th:field="*{descripcion}" class="formE-control" id="descripcion" placeholder="Breve descripcion de la oferta de trabajo">
+                    <input type="text" th:field="*{descripcion}" class="formE-control" id="descripcion" placeholder="Breve descripcion de la oferta de trabajo" required="required">
                   </div> 
                 </div>
                
